@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.roylion.pro.xinfei.mapper.ImageMapper">
+
+    <select id="listImages" resultType="cn.roylion.pro.xinfei.pojo.po.ImagePO">
+        SELECT * FROM image
+    </select>
+
+    <insert id="saveOne">
+        INSERT INTO image (title,thumbs_url,full_url,description)
+        VALUES(
+          #{title},
+          #{thumbsUrl},
+          #{fullUrl},
+          #{description}
+        )
+    </insert>
+</mapper>
