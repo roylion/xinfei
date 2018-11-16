@@ -26,6 +26,5 @@ public class FreemarkerConfiguration {
     public void setConfigure() throws Exception {
         // 加载html的资源路径
         configuration.setSharedVariable("baseUrl", baseUrl);
-
     }
 }

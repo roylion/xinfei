@@ -1,9 +1,9 @@
 package cn.roylion.pro.xinfei.controller.rest;
 
-import cn.roylion.pro.xinfei.mapper.ImageMapper;
 import cn.roylion.pro.xinfei.pojo.dto.ImageDTO;
 import cn.roylion.pro.xinfei.pojo.po.ImagePO;
 import cn.roylion.pro.xinfei.service.ImageService;
+import cn.roylion.pro.xinfei.util.DateUtils;
 import com.github.pagehelper.Page;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @Author: Roylion
@@ -48,24 +47,37 @@ public class ImgRestController {
 
     @PostMapping("uploadImg")
     public Object upload(MultipartFile file, String title, String description) {
-         String originalFilename = file.getOriginalFilename();
+        String originalFilename = file.getOriginalFilename();
+        String fullName = "/" + originalFilename;
+        String thumbsName = fullName.replaceAll("^(.*)\\.(.*)$", "$1_t.$2");
 
-        String fullName = uploadPath + "full/" + originalFilename;
-        String thumbsName = uploadPath + "thumbs/" + originalFilename;
-        String fullUrl = prefixUrl + "full/" + originalFilename;
-        String thumbsUrl = prefixUrl + "thumbs/" + originalFilename;
-        File fullFile = new File(fullName);
+        String now = DateUtils.now();
+        String fullPath = uploadPath + "full/" + now;
+        String thumbsPath = uploadPath + "thumbs/" + now;
+
+        String fullUrl = prefixUrl + "full/" + now + fullName;
+        String thumbsUrl = prefixUrl + "thumbs/" + now + thumbsName;
+
+        File fullFile = new File(fullPath);
+        File thumbsFile = new File(thumbsPath);
+        if (!fullFile.exists()) {
+            fullFile.mkdirs();
+        }
+        if (!thumbsFile.exists()) {
+            thumbsFile.mkdirs();
+        }
         try {
             BufferedImage bfImg = ImageIO.read(file.getInputStream());
 
-            file.transferTo(fullFile);
+            file.transferTo(new File(fullPath + fullName));
+
             int width = bfImg.getWidth(null);//原图宽度
             int height = bfImg.getHeight(null);//原图高度
             int rate1 = width / this.width;//宽度缩略比例
             int rate2 = height / this.height;//高度缩略比例
             int rate = rate1 > rate2 ? rate1 : rate2; //宽度缩略比例大于高度缩略比例，使用宽度缩略比例
             //计算缩略图最终的宽度和高度
-            Thumbnails.of(bfImg).size(width / rate, height / rate).toFile(thumbsName);
+            Thumbnails.of(bfImg).size(width / rate, height / rate).toFile(thumbsPath + thumbsName);
 
             ImagePO img = new ImagePO();
             img.setTitle(title);
@@ -75,6 +87,7 @@ public class ImgRestController {
             imageService.saveImage(img);
         } catch (IOException e) {
             e.printStackTrace();
+            return "faild";
         }
 
         return "success";

@@ -14,7 +14,7 @@ spring:
 #自定义配置
 xinfei:
   freemarker:
-    baseUrl: http://localhost:8888/
+    baseUrl: http://localhost/
   upload:
-    path: E:/workspace/xinfei/src/main/resources/static/images/
-    prefixUrl: http://localhost:8888/file/images/
+    path: E:/home/cimols/file/images/
+    prefixUrl: http://localhost/file/images/
