@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="${baseUrl}css/photowall/style.css"/>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'/>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 <div class="content">
@@ -18,15 +20,22 @@
     <div class="iw_wrapper">
         <ul class="iw_thumbs" id="iw_thumbs">
             <!--<li><img src="images/thumbs/1.jpg" data-img="images/full/1.jpg" alt="Thumb1"/><div><h2>Serenity</h2><p>Far far away, behind the word mountains there live the blind texts.</p></div></li>-->
-            <#list imgs as img>
-            <li>
-                <img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>
+            <!--<#list imgs as img>-->
+            <!--<li>-->
+                <!--<img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>-->
+                <!--<div>-->
+                    <!--<h2>${img.title}</h2>-->
+                    <!--<p>${img.description}</p>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--</#list>-->
+            <li v-for="img in imgs">
+                <img src="{{img.thumbsUrl}}" data-img="{{img.fullUrl}}" alt="Thumb1"/>
                 <div>
-                    <h2>${img.title}</h2>
-                    <p>${img.description}</p>
+                    <h2>{{img.title}}</h2>
+                    <p>{{img.description}}</p>
                 </div>
             </li>
-            </#list>
         </ul>
     </div>
     <div id="iw_ribbon" class="iw_ribbon">
