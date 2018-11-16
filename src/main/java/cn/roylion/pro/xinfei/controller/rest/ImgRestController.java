@@ -77,7 +77,7 @@ public class ImgRestController {
             e.printStackTrace();
         }
 
-        return "";
+        return "success";
     }
 
 }
