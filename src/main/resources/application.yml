@@ -2,7 +2,7 @@
 spring:
   freemarker:
     suffix: .html
-    cache: true
+    cache: false
   profiles:
     active: dev
 
