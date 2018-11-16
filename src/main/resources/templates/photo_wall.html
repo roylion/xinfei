@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <title>照片墙</title>
     <meta charset="UTF-8"/>
@@ -10,6 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'/>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 <body>
 <div class="content">
@@ -22,15 +23,15 @@
             <!--<li><img src="images/thumbs/1.jpg" data-img="images/full/1.jpg" alt="Thumb1"/><div><h2>Serenity</h2><p>Far far away, behind the word mountains there live the blind texts.</p></div></li>-->
             <!--<#list imgs as img>-->
             <!--<li>-->
-                <!--<img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>-->
-                <!--<div>-->
-                    <!--<h2>${img.title}</h2>-->
-                    <!--<p>${img.description}</p>-->
-                <!--</div>-->
+            <!--<img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>-->
+            <!--<div>-->
+            <!--<h2>${img.title}</h2>-->
+            <!--<p>${img.description}</p>-->
+            <!--</div>-->
             <!--</li>-->
             <!--</#list>-->
             <li v-for="img in imgs">
-                <img src="{{img.thumbsUrl}}" data-img="{{img.fullUrl}}" alt="Thumb1"/>
+                <img :src="img.thumbsUrl" :data-img="img.fullUrl" :alt="img.title"/>
                 <div>
                     <h2>{{img.title}}</h2>
                     <p>{{img.description}}</p>

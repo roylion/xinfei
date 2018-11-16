@@ -1,3 +1,4 @@
+
 $(window).load(function () {
     var $iw_thumbs = $('#iw_thumbs'),
         $iw_ribbon = $('#iw_ribbon'),
@@ -302,47 +303,48 @@ $(window).load(function () {
 
     ImageWall.init();
 
-    var vue = new Vue({
+    var vm = new Vue({
         el: "#iw_thumbs",
         data: {
             imgs: [
                 {
                     "id": 1,
                     "title": "we",
-                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_819903680494158976.jpg",
                     "fullUrl": "http://localhost/file/images/20181116/819903680494158976.jpg",
+                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_819903680494158976.jpg",
                     "description": "toghter"
                 },
                 {
                     "id": 2,
                     "title": "we",
-                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_772216331522031030.jpg",
                     "fullUrl": "http://localhost/file/images/20181116/772216331522031030.jpg",
+                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_772216331522031030.jpg",
                     "description": "toghter"
                 },
                 {
                     "id": 3,
                     "title": "we",
-                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_676829481080771856.jpg",
                     "fullUrl": "http://localhost/file/images/20181116/676829481080771856.jpg",
+                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_676829481080771856.jpg",
                     "description": "toghter"
                 },
                 {
                     "id": 4,
                     "title": "we",
-                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_638313765621832369.jpg",
                     "fullUrl": "http://localhost/file/images/20181116/638313765621832369.jpg",
+                    "thumbsUrl": "http://localhost/file/images/20181116/thumbs_638313765621832369.jpg",
                     "description": "toghter"
                 },
                 {
                     "id": 5,
                     "title": "we",
-                    "thumbsUrl": "http://localhost/file/images/thumbs/20181116/527109522443844250_t.jpg",
                     "fullUrl": "http://localhost/file/images/full/20181116/527109522443844250.jpg",
+                    "thumbsUrl": "http://localhost/file/images/thumbs/20181116/527109522443844250_t.jpg",
                     "description": "toghter"
                 }
             ]
         }
     })
 
+    console.log(11);
 });
