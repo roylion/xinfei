@@ -21,15 +21,16 @@
     <div class="iw_wrapper">
         <ul class="iw_thumbs" id="iw_thumbs">
             <!--<li><img src="images/thumbs/1.jpg" data-img="images/full/1.jpg" alt="Thumb1"/><div><h2>Serenity</h2><p>Far far away, behind the word mountains there live the blind texts.</p></div></li>-->
-            <!--<#list imgs as img>-->
-            <!--<li>-->
-            <!--<img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>-->
-            <!--<div>-->
-            <!--<h2>${img.title}</h2>-->
-            <!--<p>${img.description}</p>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--</#list>-->
+            <#--
+            <#list imgs as img>
+                <li>
+                    <img src="${img.thumbsUrl}" data-img="${img.fullUrl}" alt="${img.title}"/>
+                    <div>
+                        <h2>${img.title}</h2>
+                        <p>${img.description}</p>
+                    </div>
+                </li>
+            </#list>-->
             <li v-for="img in imgs">
                 <img :src="img.thumbsUrl" :data-img="img.fullUrl" :alt="img.title"/>
                 <div>
@@ -49,5 +50,9 @@
 <script type="text/javascript" src="${baseUrl}js/jQuery/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="${baseUrl}js/jQuery/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="${baseUrl}js/photowall/photowall.js"></script>
+<script>
+    var imgs = JSON.parse('${imgs}');
+    vm.imgs = imgs;
+</script>
 </body>
 </html>

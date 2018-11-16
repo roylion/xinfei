@@ -1,6 +1,7 @@
 package cn.roylion.pro.xinfei.controller;
 
 import cn.roylion.pro.xinfei.mapper.ImageMapper;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class IndexController {
     @GetMapping("photos")
     public String photoWall(Map map) {
         List imgs = imageMapper.listImages();
-        map.put("imgs",imgs);
+        map.put("imgs", JSONObject.toJSONString(imgs));
         System.out.println();
         return "photo_wall";
     }

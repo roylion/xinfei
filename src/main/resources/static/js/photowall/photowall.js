@@ -4,6 +4,7 @@ var vm = new Vue({
         imgs: []
     }
 });
+
 $(window).load(function () {
     var $iw_thumbs = $('#iw_thumbs'),
         $iw_ribbon = $('#iw_ribbon'),
