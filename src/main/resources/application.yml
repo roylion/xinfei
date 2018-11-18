@@ -4,7 +4,7 @@ spring:
     suffix: .html
     cache: false
   profiles:
-    active: dev
+    active: home
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
