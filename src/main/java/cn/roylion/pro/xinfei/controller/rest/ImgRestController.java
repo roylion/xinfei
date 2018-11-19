@@ -7,10 +7,7 @@ import cn.roylion.pro.xinfei.util.DateUtils;
 import com.github.pagehelper.Page;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -18,6 +15,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: Roylion
@@ -39,10 +38,17 @@ public class ImgRestController {
     @Value("${xinfei.upload.thumbs.height}")
     private Integer height;
 
-    @PostMapping("getImgs/{pageNum}/{pageSize}")
+    @CrossOrigin
+    @RequestMapping("getImgs/{pageNum}/{pageSize}")
     public Object getImages(@PathVariable Integer pageNum, @PathVariable Integer pageSize, @RequestBody(required = false) ImageDTO imageDTO) {
         Page<ImagePO> page = imageService.getImagesPage(imageDTO, pageNum, pageSize);
-        return page;
+
+        Map map = new HashMap();
+        map.put("total",page.getTotal());
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        map.put("list",page.getResult());
+        return map;
     }
 
     @PostMapping("uploadImg")

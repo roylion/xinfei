@@ -1,7 +1,32 @@
 var vm = new Vue({
-    el: "#iw_thumbs",
+    el: "#iw_wrapper",
     data: {
-        imgs: []
+        imgs: [],
+        model: {
+            total: 0,//总条数
+            size: 20,//每页显示条目个数不传默认10
+            page: 1,//当前页码
+        }
+    },
+    methods: {
+        pageFn: function (val) {
+            this.model.page = val;
+            var newUrl = url + "getImgs/" + val + "/" + this.model.size;
+
+            $.ajax({
+                method: 'POST',
+                url: newUrl,
+                data: {},
+                success: function (res) {
+                    vm.model = {
+                        total: res.total,
+                        page: res.pageNum,
+                        size: res.pageSize
+                    }
+                    vm.imgs = res.list;
+                }
+            });
+        }
     }
 });
 
@@ -69,7 +94,7 @@ $(window).load(function () {
                     if (event.keyCode == 27) {
                         closeRibbon();
                     }
-                    console.log(event.keyCode);
+                    // console.log(event.keyCode);
                 })
 
                 // on window resize we need to recalculate the window dimentions
@@ -308,5 +333,4 @@ $(window).load(function () {
     })();
 
     ImageWall.init();
-})
-;
+});
