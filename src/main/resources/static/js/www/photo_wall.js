@@ -4,7 +4,7 @@ var vm = new Vue({
         imgs: [],
         model: {
             total: 0,//总条数
-            size: 50,//每页显示条目个数不传默认10
+            size: 40,//每页显示条目个数不传默认10
             page: 1,//当前页码
             currentFirst: false,//获取第一版参数
         }

@@ -37,7 +37,7 @@ public class IndexController {
                             Map map) {
 
         Page<ImagePO> page = imageService.getImagesPage(null,
-                ObjectUtils.getDef(pageNum, 1), ObjectUtils.getDef(pageSize, 50));
+                ObjectUtils.getDef(pageNum, 1), ObjectUtils.getDef(pageSize, 40));
 
         Map data = new HashMap();
         data.put("imgs", page.getResult());
