@@ -1,36 +1,23 @@
 var vm = new Vue({
-    el: "#iw_wrapper",
+    el: "#content",
     data: {
         imgs: [],
         model: {
             total: 0,//总条数
-            size: 20,//每页显示条目个数不传默认10
+            size: 50,//每页显示条目个数不传默认10
             page: 1,//当前页码
+            currentFirst: false,//获取第一版参数
         }
     },
     methods: {
         pageFn: function (val) {
-            this.model.page = val;
-            var newUrl = url + "getImgs/" + val + "/" + this.model.size;
-
-            $.ajax({
-                method: 'POST',
-                url: newUrl,
-                data: {},
-                success: function (res) {
-                    vm.model = {
-                        total: res.total,
-                        page: res.pageNum,
-                        size: res.pageSize
-                    }
-                    vm.imgs = res.list;
-                }
-            });
+            location.href = url + "photos?pageNum=" + val + "&pageSize=" + this.model.size;
         }
     }
 });
 
 $(window).load(function () {
+    // 定义缩略图对象 和 横幅 及关闭横幅 及说明对象
     var $iw_thumbs = $('#iw_thumbs'),
         $iw_ribbon = $('#iw_ribbon'),
         $iw_ribbon_close = $iw_ribbon.children('span.iw_close'),
@@ -41,11 +28,14 @@ $(window).load(function () {
         var w_dim,
             // index of current image
             current = -1,
+            // 显示横幅
             isRibbonShown = false,
+            // 显示全图
             isFullMode = false,
-            // ribbon / images animation settings
+            // ribbon / images animation settings 动画效果
             ribbonAnim = {speed: 500, easing: 'easeOutExpo'},
             imgAnim = {speed: 400, easing: 'jswing'},
+
             // init function : call masonry, calculate window dimentions, initialize some events
             init = function () {
                 $iw_thumbs.imagesLoaded(function () {
@@ -333,4 +323,6 @@ $(window).load(function () {
     })();
 
     ImageWall.init();
+
 });
+

@@ -14,22 +14,9 @@
     <script>
         var url = "${baseUrl}";
     </script>
-    <style>
-        #iw_wrapper {
-            position: relative;
-            width: 100vm;
-            height: 100vh;
-        }
-        #page {
-            position: absolute;
-            width: 200px;
-            bottom: 20vh;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 <body>
-<div class="content">
+<div class="content" id="content">
     <header>
         <h1>WE ARE 伐木累</h1>
         <span>photo wall</span>
@@ -45,15 +32,15 @@
                 </div>
             </li>
         </ul>
-        <div id="page">
-            <pageination :total="model.total" :size="model.size" :page="model.page" :changge="pageFn"></pageination>
-        </div>
+
     </div>
     <div id="iw_ribbon" class="iw_ribbon">
         <span class="iw_close"></span>
         <span class="iw_zoom">点击关闭</span>
     </div>
-
+    <div id="page">
+        <pageination :total="model.total" :size="model.size" :page="model.page" :changge="pageFn"></pageination>
+    </div>
 </div>
 
 <script type="text/javascript" src="${baseUrl}js/jQuery/jquery.min.js"></script>
@@ -61,5 +48,14 @@
 <script type="text/javascript" src="${baseUrl}js/jQuery/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="${baseUrl}js/pageination.js"></script>
 <script type="text/javascript" src="${baseUrl}js/www/photo_wall.js"></script>
+<script>
+    var data = JSON.parse('${data}');
+    vm.model = {
+        total: data.total,
+        page: data.pageNum,
+        size: data.pageSize
+    }
+    vm.imgs = data.imgs;
+</script>
 </body>
 </html>

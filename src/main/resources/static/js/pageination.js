@@ -1,4 +1,4 @@
-var pageination='<script type="text/x-template" id="pageination">\n' +
+var pageination = '<script type="text/x-template" id="pageination">\n' +
     '    <div class="pageination_align">\n' +
     '        <div class="pageination" v-if="pageinationTotal">\n' +
     '            <div @click="pageUp(0)" class="pagination_page" :class="startDisabled?\'disabled\':\'\'">首页</div>\n' +
@@ -30,7 +30,8 @@ Vue.component('pageination', {
             endDisabled: true,//是否可以点击尾页下一页
             pageChangge: this.changge,//修改方法
             pageIsUrl: this.isUrl ? true : false,//是否开启修改url
-        }
+            currentFirst: this.currentFirst ? true : false,// 获取第一版数据
+    }
     },
     methods: {
         jump(item) {
@@ -99,7 +100,9 @@ Vue.component('pageination', {
         }
     },
     created() {
-        this.pageCurrentChange();
+        if (this.currentFirst) {
+            this.pageCurrentChange();
+        }
     },
     watch: {
         total: function (val, oldVal) {
@@ -108,6 +111,10 @@ Vue.component('pageination', {
         },
         page: function (val, oldVal) {
             this.pageinationCurrentPage = val;
+            this.pagers();
+        },
+        size: function (val,oldVal) {
+            this.pageinationSize = val;
             this.pagers();
         }
     }

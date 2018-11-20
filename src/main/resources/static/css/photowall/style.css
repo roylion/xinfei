@@ -171,3 +171,10 @@ ul.iw_thumbs li:nth-child(7n) img{
 .footer a.left{
 	float:left;
 }
+
+#page{
+	width: 500px;
+	position: fixed;
+	bottom: 50px;
+	left: calc(50% - 250px);
+}
